@@ -2,73 +2,55 @@ import "./Charactes.css";
 import Form from "../components/Form";
 import CharacterCard from "../components/CharacterCard";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Characters() {
-  const mockApiCall = [
-    {
-      id: 1,
-      name: "Rick Sanchez",
-      status: "Alive",
-      species: "Human",
-      type: "",
-      gender: "Male",
-      origin: {
-        name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/1",
-      },
-      location: {
-        name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/20",
-      },
-      image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-      episode: [
-        "https://rickandmortyapi.com/api/episode/1",
-        "https://rickandmortyapi.com/api/episode/2",
-      ],
-      url: "https://rickandmortyapi.com/api/character/1",
-      created: "2017-11-04T18:48:46.250Z",
-    },
-    {
-      id: 2,
-      name: "Morty Smith",
-      status: "Alive",
-      species: "Human",
-      type: "",
-      gender: "Male",
-      origin: {
-        name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/1",
-      },
-      location: {
-        name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/20",
-      },
-      image: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
-      episode: [
-        "https://rickandmortyapi.com/api/episode/1",
-        "https://rickandmortyapi.com/api/episode/2",
-      ],
-      url: "https://rickandmortyapi.com/api/character/2",
-      created: "2017-11-04T18:50:21.651Z",
-    },
-  ];
+  const [allCharacters, setAllCharacters] = useState([]);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    if (allCharacters.length === 0 || page >= 1) {
+      const url = `https://rickandmortyapi.com/api/character/?page=${
+        page >= 1 ? page : 1
+      }`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => setAllCharacters(data.results));
+    }
+  }, [allCharacters, page]);
+
+  function loadMore(event) {
+    setPage(page + 1);
+  }
+  function goBack(event) {
+    let counter = page;
+    counter = counter - 1;
+    if (counter < 1) {
+      counter = 1;
+    } else {
+      counter = counter;
+    }
+    setPage(counter);
+  }
 
   return (
     <section className="characters">
       <Form />
       <ul className="character-list">
-        {mockApiCall.map((mockObj) => {
+        {allCharacters.map((character) => {
           return (
             <Link
-              key={mockObj.id}
-              to={`/characters/singleCharacter/${mockObj.id}`}
+              key={character.id}
+              to={`/characters/singleCharacter/${character.id}`}
             >
-              <CharacterCard name={mockObj.name} imageSrc={mockObj.image} />
+              <CharacterCard name={character.name} imageSrc={character.image} />
             </Link>
           );
         })}
       </ul>
-      <button>More</button>
+      <button onClick={goBack}>Go to previous page</button>
+      <button onClick={loadMore}>Go to next page</button>
     </section>
   );
 }
