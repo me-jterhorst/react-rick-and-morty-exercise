@@ -1,0 +1,9 @@
+.singleCharacter {
+  height: 90vh;
+  background: hotpink;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
