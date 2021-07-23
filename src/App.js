@@ -1,8 +1,8 @@
 import "./App.css";
 import Header from "./components/Header";
-import Home from "./components/Home";
-import Characters from "./components/Characters";
-import SingleCharacter from "./components/SingleCharacter.js";
+import Home from "./pages/Home";
+import Characters from "./pages/Characters";
+import SingleCharacter from "./pages/SingleCharacter.js";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
@@ -18,7 +18,6 @@ function App() {
           <Route path="/characters">
             <Characters />
           </Route>
-
           <Route path="/">
             <Home />
           </Route>
