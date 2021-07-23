@@ -1,17 +1,14 @@
 import "./Charactes.css";
 import Form from "./Form";
+import CharacterCard from "./CharacterCard";
 
 export default function Characters() {
   return (
     <section className="characters">
       <Form />
       <ul className="character-list">
-        <li className="character-card">
-          <img src="#" alt="character" />
-          <h3>Name</h3>
-        </li>
+        <CharacterCard />
       </ul>
-
       <button>More</button>
     </section>
   );
