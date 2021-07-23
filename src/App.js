@@ -11,7 +11,7 @@ function App() {
       <Header />
       <main>
         <Switch>
-          <Route path="/characters/singleCharacter:id">
+          <Route path="/characters/singleCharacter/:id">
             <SingleCharacter />
           </Route>
 

@@ -61,7 +61,7 @@ export default function Characters() {
           return (
             <Link
               key={mockObj.id}
-              to={`/characters/singleCharacter${mockObj.id}`}
+              to={`/characters/singleCharacter/${mockObj.id}`}
             >
               <CharacterCard name={mockObj.name} imageSrc={mockObj.image} />
             </Link>
