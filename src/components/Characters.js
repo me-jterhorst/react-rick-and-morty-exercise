@@ -1,17 +1,10 @@
 import "./Charactes.css";
+import Form from "./Form";
 
 export default function Characters() {
   return (
     <section className="characters">
-      <form>
-        <input type="text" name="characterName" id="characterName" />
-        <selection className="characters__status">
-          <option>All</option>
-          <option>Unknown</option>
-          <option>Alive</option>
-          <option>Dead</option>
-        </selection>
-      </form>
+      <Form />
       <ul className="character-list">
         <li className="character-card">
           <img src="#" alt="character" />

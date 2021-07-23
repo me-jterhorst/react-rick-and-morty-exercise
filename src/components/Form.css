@@ -1,0 +1,10 @@
+.character-form {
+  padding: 1em 3em;
+  margin-bottom: 2em;
+  background: rebeccapurple;
+}
+
+.character-form input {
+  margin-right: 1em;
+  margin-left: auto;
+}
