@@ -6,3 +6,15 @@
   background-color: #111440;
   font-size: 1rem;
 }
+
+.alive {
+  outline: 4px solid seagreen;
+}
+
+.dead {
+  outline: 4px solid crimson;
+}
+
+.unknown {
+  outline: 4px solid cadetblue;
+}

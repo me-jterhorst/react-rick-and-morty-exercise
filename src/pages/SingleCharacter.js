@@ -16,7 +16,7 @@ export default function SingleCharacter() {
           setCharacter(data);
         });
     }
-  }, [character]);
+  }, [character, id]);
 
   return (
     <section className="singleCharacter">

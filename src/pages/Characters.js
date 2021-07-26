@@ -28,8 +28,6 @@ export default function Characters() {
     counter = counter - 1;
     if (counter < 1) {
       counter = 1;
-    } else {
-      counter = counter;
     }
     setPage(counter);
   }
@@ -43,6 +41,13 @@ export default function Characters() {
             <Link
               key={character.id}
               to={`/characters/singleCharacter/${character.id}`}
+              className={
+                character.status === "Alive"
+                  ? "alive"
+                  : character.status === "Dead"
+                  ? "dead"
+                  : "unknown"
+              }
             >
               <CharacterCard name={character.name} imageSrc={character.image} />
             </Link>
