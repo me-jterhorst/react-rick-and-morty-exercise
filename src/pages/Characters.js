@@ -54,8 +54,14 @@ export default function Characters() {
           );
         })}
       </ul>
-      <button onClick={goBack}>Go to previous page</button>
-      <button onClick={loadMore}>Go to next page</button>
+      <div className="button__wrapper">
+        <button className="prevBtn" onClick={goBack}>
+          Go to previous page
+        </button>
+        <button className="nextBtn" onClick={loadMore}>
+          Go to next page
+        </button>
+      </div>
     </section>
   );
 }

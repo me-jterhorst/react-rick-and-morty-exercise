@@ -21,3 +21,23 @@
 
   overflow-y: scroll;
 }
+
+.button__wrapper {
+  display: flex;
+  padding: 1.5em;
+  gap: 1em;
+}
+
+.prevBtn {
+  padding: 0.5em;
+  background: salmon;
+  color: white;
+  border: none;
+}
+
+.nextBtn {
+  padding: 0.5em;
+  background: cadetblue;
+  color: white;
+  border: none;
+}
