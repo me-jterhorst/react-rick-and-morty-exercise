@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 export default function Characters() {
   const [allCharacters, setAllCharacters] = useState([]);
   const [page, setPage] = useState(1);
+  const [status, setStatus] = useState("all");
 
   useEffect(() => {
     if (allCharacters.length === 0 || page >= 1) {
@@ -18,7 +19,7 @@ export default function Characters() {
         .then((response) => response.json())
         .then((data) => setAllCharacters(data.results));
     }
-  }, [allCharacters, page]);
+  }, [allCharacters, status, page]);
 
   function loadMore(event) {
     setPage(page + 1);
@@ -31,28 +32,41 @@ export default function Characters() {
     }
     setPage(counter);
   }
-
+  function handleSelection(event) {
+    const selectionValue = event.target.value.toLowerCase();
+    setStatus(selectionValue);
+  }
   return (
     <section className="characters">
-      <Form />
+      <Form onChange={handleSelection} />
       <ul className="character-list">
-        {allCharacters.map((character) => {
-          return (
-            <Link
-              key={character.id}
-              to={`/characters/singleCharacter/${character.id}`}
-              className={
-                character.status === "Alive"
-                  ? "alive"
-                  : character.status === "Dead"
-                  ? "dead"
-                  : "unknown"
-              }
-            >
-              <CharacterCard name={character.name} imageSrc={character.image} />
-            </Link>
-          );
-        })}
+        {allCharacters
+          .filter((character) => {
+            if (status === "all") {
+              return character;
+            }
+            return character.status.toLowerCase() === status;
+          })
+          .map((character) => {
+            return (
+              <Link
+                key={character.id}
+                to={`/characters/singleCharacter/${character.id}`}
+                className={
+                  character.status === "Alive"
+                    ? "alive"
+                    : character.status === "Dead"
+                    ? "dead"
+                    : "unknown"
+                }
+              >
+                <CharacterCard
+                  name={character.name}
+                  imageSrc={character.image}
+                />
+              </Link>
+            );
+          })}
       </ul>
       <div className="button__wrapper">
         <button className="prevBtn" onClick={goBack}>
